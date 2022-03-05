@@ -13,119 +13,59 @@ def leer_json(fichero):
 
 def listar_animes(datos):
     lista=[]
-    for listas in datos:
-        lista.append(listas.get("title").get("text"))
+    for anime in datos:
+        lista.append(anime.get("title").get("text"))
+    return lista
+
+def listar_estudios(datos):
+    lista=[]
+    for anime in datos:
+        lista.append(anime.get("studio"))
     return lista
 
 def contar_estudios(datos):
     lista=[]
-    for listas in datos:
-        if listas.get("studio") not in lista:
-            lista.append(listas.get("studio"))
-    return lista , len(lista)
+    for anime in datos:
+        if anime.get("studio") not in lista:
+            lista.append(anime.get("studio"))
+    return len(lista)
 
 #3. Pide por teclado un anime y muestra el estudio que lo realiza.
 
 def mostrar_estudios(datos,estudios):
-    for animes in datos:
-        titulo=animes.get("title").get("text")
+    for anime in datos:
+        titulo=anime.get("title").get("text")
         if titulo == estudios:
-            return animes.get("studio")
+            return anime.get("studio")
 
 #4. Pedir por teclado un genero y mostrar los animes que pertenecen a el.
 
-def mostrar_animes(datos,animes):
+def mostrar_animes(datos,genero):
+    lista=[]
 
+    for anime in datos:
+        nombres=anime.get("genres")
+        for nombre in nombres:
+            if nombre == genero:
+                lista.append(anime.get("title").get("text")) 
 
 
+    return lista
 
 
+#5. Pide por teclado un estudio y te muestra los animes realizados(si hay mas de uno, muestra todos) y su descripcion.
 
 
+def mostrar_animes_por_estudio(datos,estudio):
+        lista=[]
+        
 
+        for anime in datos:
+            estudio_anime=anime.get("studio")
+            if estudio == estudio_anime:
+                    lista.append(anime.get("title").get("text"))
+                    lista.append(anime.get("description"))
+                    lista.append("")
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#def elegir(lista_de_opciones):
-#    num = 1
- ##   for opcion in lista_de_opciones:
-  #      print(f"Opción {str(num)}: {str(opcion)}")
-   #     num += 1
-#    opcion_elegida = input("\nEscriba el número de su opción y pulse ENTER: ")
-#    print("")
-#    num = 0
-#    for opcion in lista_de_opciones:
-#        num += 1
-#        opcion_actual = str(num)
- ##       if opcion_elegida == opcion_actual:
-#            return opcion
-#    input("La opción elegida no existe. Pulse ENTER para volver al menú principal.")
+        return lista
     
-#def listar(info_json):
-#    print("Lista de animes:\n")
-##    contador=0
-#    for nombre_anime in list(info_json.keys()):
-#        name_anime= info_json.get(nombre_anime)
-#        for anime in name_anime:
-##            nombredeanime= anime.get("title")
-#            print(nombredeanime)
