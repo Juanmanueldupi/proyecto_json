@@ -3,6 +3,7 @@ from funciones import *
 info_json= leer_json("animes.json")
 
 menu= '''
+Menu:
 1. Lista el nombre de los animes.
 2. Contar todos los estudios. 
 3. Pide por teclado un anime y muestra el estudio que lo realiza.
@@ -19,16 +20,19 @@ while opcion != 6:
         for anime in listar_animes(info_json):
             print(anime)
     if opcion == 2:
-        for estudio in contar_estudios(info_json):
+        for estudio in listar_estudios(info_json):
             print(estudio)
+        print()    
+        print("El numero de estudios es: ",contar_estudios(info_json))
     if opcion == 3:
         estudios = input("Introduce un anime para ver el estudio que lo realiza: ")
-        print(mostrar_estudios(info_json,estudios))
-    if opcion == 4:
-        
+        print()
+        print("El estudio que realiza este anime es: ", mostrar_estudios(info_json,estudios))
+    if opcion == 6:
+        print("Salir del programa")  
+        print()
 
-        
-    print()
+    print(menu)
     opcion = int(input("\nIndica la opción elegida: "))
+    
     print()
-
